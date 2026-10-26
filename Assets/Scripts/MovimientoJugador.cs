@@ -43,7 +43,14 @@ public class MovimientoJugador : MonoBehaviour
         // Código de la animación
         if (rb2d.linearVelocityY != 0)
         {
-            estadoAnimacion = 2;
+            if (numSaltos == 2)
+            {
+                estadoAnimacion = 3;
+            }
+            else
+            {
+                estadoAnimacion = 2;
+            }
         } 
         else if (rb2d.linearVelocityX > 0)
         {
