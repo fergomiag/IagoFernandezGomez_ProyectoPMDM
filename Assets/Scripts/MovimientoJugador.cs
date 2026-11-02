@@ -41,7 +41,7 @@ public class MovimientoJugador : MonoBehaviour
         Saltar();
 
         // Código de la animación
-        if (rb2d.linearVelocityY != 0)
+        if (rb2d.linearVelocityY > 0.1f)
         {
             if (numSaltos == 2)
             {
@@ -52,6 +52,10 @@ public class MovimientoJugador : MonoBehaviour
                 estadoAnimacion = 2;
             }
         } 
+        else if (rb2d.linearVelocityY < -0.1f)
+        {
+            estadoAnimacion = 5;
+        }
         else if (rb2d.linearVelocityX > 0)
         {
             estadoAnimacion = 1;
