@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class MovimientoJugador : MonoBehaviour
 {
@@ -19,28 +20,42 @@ public class MovimientoJugador : MonoBehaviour
 
     int estadoAnimacion = 0;
 
+    bool recibiendoDano = false;
+
+    int vidas = 3;
+
+    bool muerto = false;
+
+    Vector3 posicionInicial;
+
     [SerializeField]
     LayerMask suelo;
-    
+
     void Start()
     {
         movimientoAction = InputSystem.actions.FindAction("Move");
 
         saltarAction = InputSystem.actions.FindAction("Jump");
-        
+
         rb2d = GetComponent<Rigidbody2D>();
 
         collider2D = GetComponent<BoxCollider2D>();
 
         animator = GetComponent<Animator>();
+
+        posicionInicial = transform.position;
     }
 
     void Update()
     {
+        if (muerto || recibiendoDano)
+        {
+            return;
+        }
+
         Moverse();
         Saltar();
 
-        // Código de la animación
         if (rb2d.linearVelocityY > 0.1f)
         {
             if (numSaltos == 2)
@@ -51,7 +66,7 @@ public class MovimientoJugador : MonoBehaviour
             {
                 estadoAnimacion = 2;
             }
-        } 
+        }
         else if (rb2d.linearVelocityY < -0.1f)
         {
             estadoAnimacion = 5;
@@ -71,14 +86,13 @@ public class MovimientoJugador : MonoBehaviour
             estadoAnimacion = 0;
         }
 
-        // Setear la animación
         animator.SetInteger("estado", estadoAnimacion);
     }
 
     void Moverse()
     {
         Vector2 movimiento = movimientoAction.ReadValue<Vector2>();
-        rb2d.linearVelocityX = movimiento.x * velocidad;  
+        rb2d.linearVelocityX = movimiento.x * velocidad;
     }
 
     void Saltar()
@@ -112,5 +126,54 @@ public class MovimientoJugador : MonoBehaviour
             .1f,
             suelo
         );
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Pinchos") && !recibiendoDano && !muerto)
+        {
+            vidas--;
+
+            if (vidas <= 0)
+            {
+                muerto = true;
+                estadoAnimacion = 6;
+                rb2d.linearVelocity = Vector2.zero;
+                animator.SetInteger("estado", estadoAnimacion);
+                
+            }
+            else
+            {
+                recibiendoDano = true;
+                estadoAnimacion = 4;
+                animator.SetInteger("estado", estadoAnimacion);
+            }
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Pinchos") && !muerto)
+        {
+            TerminarDano();
+        }
+    }
+
+    public void TerminarDano()
+{
+    if (!muerto)
+    {
+        transform.position = posicionInicial;
+
+        rb2d.linearVelocity = Vector2.zero;
+        numSaltos = 0;
+
+        recibiendoDano = false;
+    }
+}
+
+    public void CargarEscenaMuerte()
+    {
+        SceneManager.LoadScene("Muerte");
     }
 }

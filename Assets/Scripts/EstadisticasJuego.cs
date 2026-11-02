@@ -11,4 +11,5 @@ public class EstadisticasJuego : MonoBehaviour
         contadorMelon++;
         texto.text = contadorMelon.ToString();
     }
+    
 }
