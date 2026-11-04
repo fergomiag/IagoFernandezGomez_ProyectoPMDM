@@ -9,6 +9,7 @@ public class MovimientoJugador : MonoBehaviour
     Rigidbody2D rb2d;
     BoxCollider2D collider2D;
     Animator animator;
+    EstadisticasJuego estadisticas;
 
     [SerializeField]
     float velocidad = 5f;
@@ -27,6 +28,11 @@ public class MovimientoJugador : MonoBehaviour
     bool muerto = false;
 
     Vector3 posicionInicial;
+    Vector3 ultimoCheckpoint;
+    
+
+    [SerializeField]
+    float limiteCaida = -15f;
 
     [SerializeField]
     LayerMask suelo;
@@ -44,12 +50,24 @@ public class MovimientoJugador : MonoBehaviour
         animator = GetComponent<Animator>();
 
         posicionInicial = transform.position;
+
+        ultimoCheckpoint = posicionInicial;
+
+        estadisticas = FindFirstObjectByType<EstadisticasJuego>();
+        
+        estadisticas.ActualizarVidas(vidas);
     }
 
     void Update()
     {
         if (muerto || recibiendoDano)
         {
+            return;
+        }
+
+        if (transform.position.y < limiteCaida)
+        {
+            RecibirDano();
             return;
         }
 
@@ -133,6 +151,7 @@ public class MovimientoJugador : MonoBehaviour
         if (collision.gameObject.CompareTag("Pinchos") && !recibiendoDano && !muerto)
         {
             vidas--;
+            estadisticas.ActualizarVidas(vidas);
 
             if (vidas <= 0)
             {
@@ -140,7 +159,7 @@ public class MovimientoJugador : MonoBehaviour
                 estadoAnimacion = 6;
                 rb2d.linearVelocity = Vector2.zero;
                 animator.SetInteger("estado", estadoAnimacion);
-                
+
             }
             else
             {
@@ -160,20 +179,55 @@ public class MovimientoJugador : MonoBehaviour
     }
 
     public void TerminarDano()
-{
-    if (!muerto)
     {
-        transform.position = posicionInicial;
+        if (!muerto)
+        {
+            transform.position = ultimoCheckpoint;
 
-        rb2d.linearVelocity = Vector2.zero;
-        numSaltos = 0;
+            rb2d.linearVelocity = Vector2.zero;
 
-        recibiendoDano = false;
+            numSaltos = 0;
+
+            recibiendoDano = false;
+        }
     }
-}
 
     public void CargarEscenaMuerte()
     {
         SceneManager.LoadScene("Muerte");
+    }
+
+    public void GuardarCheckpoint(Vector3 posicion)
+    {
+        ultimoCheckpoint = posicion;
+    }
+
+    void RecibirDano()
+    {
+        if (!recibiendoDano && !muerto)
+        {
+            vidas--;
+            estadisticas.ActualizarVidas(vidas);
+
+            if (vidas <= 0)
+            {
+                muerto = true;
+                estadoAnimacion = 6;
+
+                rb2d.linearVelocity = Vector2.zero;
+
+                animator.SetInteger("estado", estadoAnimacion);
+            }
+            else
+            {
+                recibiendoDano = true;
+
+                rb2d.linearVelocity = Vector2.zero;
+
+                estadoAnimacion = 4;
+
+                animator.SetInteger("estado", estadoAnimacion);
+            }
+        }
     }
 }

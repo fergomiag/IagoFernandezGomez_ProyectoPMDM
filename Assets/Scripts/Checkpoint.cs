@@ -4,10 +4,8 @@ using UnityEngine;
 public class Checkpoint : MonoBehaviour
 {
     public Transform puntoReaparicion;
-
-
     Animator animacion;
-
+    bool activado = false;
 
     void Start()
     {
@@ -17,15 +15,16 @@ public class Checkpoint : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && !activado)
         {
             MovimientoJugador jugador = collision.GetComponent<MovimientoJugador>();
 
 
             if (jugador != null)
             {
-                //jugador.GuardarCheckpoint(puntoReaparicion.position);
+                jugador.GuardarCheckpoint(puntoReaparicion.position);
                 animacion.SetBool("activado", true);
+                activado = true;
             }
         }
     }
