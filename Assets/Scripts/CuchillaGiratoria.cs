@@ -3,8 +3,9 @@ using UnityEngine;
 public class CuchillaGiratoria : MonoBehaviour
 {
     Rigidbody2D rb2d;
-
+    [SerializeField]
     float velocidadCaida = 6f;
+    [SerializeField]
     float velocidadHorizontal = 5f;
     float velocidadGiro = 360f;
 

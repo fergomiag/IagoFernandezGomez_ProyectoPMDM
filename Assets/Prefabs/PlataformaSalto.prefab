@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 1486258380018025066}
   - component: {fileID: 1404714129481216883}
   - component: {fileID: 8972637766153868330}
+  - component: {fileID: 7236994897019765618}
+  - component: {fileID: -2671700041678713746}
   m_Layer: 0
   m_Name: PlataformaSalto
   m_TagString: Untagged
@@ -138,3 +140,37 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.4460388, y: 0.6795322}
   m_EdgeRadius: 0
+--- !u!95 &7236994897019765618
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8625728708712878491}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c58ab36fae16c7f42b086f13c9f8b370, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-2671700041678713746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8625728708712878491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e1ce82d6972cca46a6f0252ecf4b3bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlataformaSalto
