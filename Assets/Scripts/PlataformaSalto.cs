@@ -3,13 +3,17 @@ using UnityEngine;
 
 public class PlataformaSalto : MonoBehaviour
 {
+    public AudioClip sonidoPlataforma;
+
     Animator animator;
+    AudioSource audioSource;
 
     float fuerzaSalto = 12f;
 
     void Start()
     {
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -23,6 +27,8 @@ public class PlataformaSalto : MonoBehaviour
                 rb2d.linearVelocityY = fuerzaSalto;
 
                 animator.SetTrigger("ActivarSalto");
+
+                audioSource.PlayOneShot(sonidoPlataforma);
             }
         }
     }
