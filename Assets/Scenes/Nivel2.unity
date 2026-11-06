@@ -1393,6 +1393,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8068621686786397684, guid: 16aee78e1fe010542be7bd38e459a194, type: 3}
       insertIndex: -1
       addedObject: {fileID: 676988354}
+    - targetCorrespondingSourceObject: {fileID: 8068621686786397684, guid: 16aee78e1fe010542be7bd38e459a194, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 676988355}
   m_SourcePrefab: {fileID: 100100000, guid: 16aee78e1fe010542be7bd38e459a194, type: 3}
 --- !u!1 &676988353 stripped
 GameObject:
@@ -1445,6 +1448,18 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.6414592, y: 1.7582321}
   m_EdgeRadius: 0
+--- !u!114 &676988355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 676988353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f2f31d81593ade498a5f7ea826b2234, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PortalVictoria
 --- !u!1001 &693454643
 PrefabInstance:
   m_ObjectHideFlags: 0
