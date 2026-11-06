@@ -29,6 +29,9 @@ public class MovimientoJugador : MonoBehaviour
 
     Vector3 posicionInicial;
     Vector3 ultimoCheckpoint;
+
+    public AudioSource sonidoSalto;
+    public AudioSource sonidoDano;
     
 
     [SerializeField]
@@ -121,6 +124,7 @@ public class MovimientoJugador : MonoBehaviour
             {
                 numSaltos = 0;
                 rb2d.linearVelocityY = velocidadSalto;
+                sonidoSalto.Play();
                 numSaltos++;
             }
             else if (!EstaTocandoSuelo())
@@ -128,6 +132,7 @@ public class MovimientoJugador : MonoBehaviour
                 if (numSaltos < 2)
                 {
                     rb2d.linearVelocityY = velocidadSalto;
+                    sonidoSalto.Play();
                     numSaltos++;
                 }
             }
@@ -151,6 +156,7 @@ public class MovimientoJugador : MonoBehaviour
         if (collision.gameObject.CompareTag("Pinchos") && !recibiendoDano && !muerto)
         {
             vidas--;
+            sonidoDano.Play();
             estadisticas.ActualizarVidas(vidas);
 
             if (vidas <= 0)
@@ -207,6 +213,7 @@ public class MovimientoJugador : MonoBehaviour
         if (!recibiendoDano && !muerto)
         {
             vidas--;
+            sonidoDano.Play();
             estadisticas.ActualizarVidas(vidas);
 
             if (vidas <= 0)
