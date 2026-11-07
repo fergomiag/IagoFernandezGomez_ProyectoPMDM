@@ -1913,7 +1913,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f2f31d81593ade498a5f7ea826b2234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PortalVictoria
-  sonidoPortal: {fileID: 8300000, guid: 2f2e44c674e25424bbd5073ee0534caf, type: 3}
+  sonidoPortal: {fileID: 8300000, guid: e15470951ace570419d7739b0628e5a9, type: 3}
 --- !u!82 &676988356
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1925,7 +1925,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 2f2e44c674e25424bbd5073ee0534caf, type: 3}
+  m_Resource: {fileID: 8300000, guid: e15470951ace570419d7739b0628e5a9, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.5
   m_Pitch: 1
@@ -23844,7 +23844,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 16734772886206538}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48025b3cc7b438e41ac8d6ca15f42229, type: 3}
+  m_Script: {fileID: 11500000, guid: d8e186a99170ea44a854739b101bf37a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Portal
   sonidoPortal: {fileID: 8300000, guid: e40e5504fc19e994fb43a6e61bbdad29, type: 3}

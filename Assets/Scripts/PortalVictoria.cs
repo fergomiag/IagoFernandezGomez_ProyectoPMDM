@@ -24,13 +24,19 @@ public class PortalVictoria : MonoBehaviour
     }
 
     IEnumerator CambiarEscena()
-    {
-        if (sonidoPortal != null && audioSource != null)
-        {
-            audioSource.PlayOneShot(sonidoPortal);
-            yield return new WaitForSeconds(sonidoPortal.length);
-        }
+{
+    Rigidbody2D rb = FindFirstObjectByType<MovimientoJugador>().GetComponent<Rigidbody2D>();
 
-        SceneManager.LoadScene("Win");
+    rb.linearVelocity = Vector2.zero;
+    rb.simulated = false;
+
+    if (sonidoPortal != null && audioSource != null)
+    {
+        audioSource.PlayOneShot(sonidoPortal);
     }
+
+    yield return new WaitForSeconds(0.5f);
+
+    SceneManager.LoadScene("Win");
+}
 }

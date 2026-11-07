@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
-public class Portal : MonoBehaviour
+public class PortalNivel1 : MonoBehaviour
 {
     public AudioClip sonidoPortal;
 
@@ -25,15 +25,18 @@ public class Portal : MonoBehaviour
 
     IEnumerator CambiarEscena()
     {
+        Rigidbody2D rb = FindFirstObjectByType<MovimientoJugador>().GetComponent<Rigidbody2D>();
+
+        rb.linearVelocity = Vector2.zero;
+        rb.simulated = false;
+
         if (sonidoPortal != null && audioSource != null)
         {
             audioSource.PlayOneShot(sonidoPortal);
-            yield return new WaitForSeconds(sonidoPortal.length);
         }
 
-        if (SceneManager.GetActiveScene().name == "Nivel1")
-        {
-            SceneManager.LoadScene("Nivel2");
-        }
+        yield return new WaitForSeconds(0.5f);
+
+        SceneManager.LoadScene("Nivel2");
     }
 }

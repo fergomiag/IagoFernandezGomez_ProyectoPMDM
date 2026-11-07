@@ -178,9 +178,9 @@ public class MovimientoJugador : MonoBehaviour
 
     void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Pinchos") && !muerto)
+        if (collision.gameObject.CompareTag("Pinchos") && recibiendoDano && !muerto)
         {
-            TerminarDano();
+            Invoke(nameof(TerminarDano), 0.5f);
         }
     }
 
